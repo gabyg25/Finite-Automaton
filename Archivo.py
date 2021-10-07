@@ -11,11 +11,13 @@ def add_File():
         data_Saved = []
         for lines_read in lines_saved:
             lines_read = lines_read.replace("\n","")
+            lines_read = lines_read.replace("\t","")
             lines_read = lines_read.replace("{","")
             lines_read = lines_read.replace("}","")
             lines_read = lines_read.replace("=","")
             lines_read = lines_read.replace(" ","")
-            lines_read = lines_read.replace(",","")
+            lines_read = lines_read.replace(")","")
+            lines_read = lines_read.replace("(","")
             data_Saved.append(lines_read)
 
     return data_Saved
