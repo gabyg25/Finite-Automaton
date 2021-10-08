@@ -6,8 +6,7 @@ import pandas as pd
 class Automata:
 
     def __init__(self):
-        file_saves = self.add_FilesW()
-        self.analyze_File(file_saves)
+        self.add_FilesW()
 
     # Abrir la ventana para subir archivo
     def add_FilesW(self):
@@ -16,8 +15,10 @@ class Automata:
         self.windows.title("Automata Finito")
         self.windows.resizable(0, 0)
         file_save = add_File()
+        self.analyze_File(file_save)
+
         self.windows.mainloop()
-        return file_save
+        
 
     def analyze_File(self, file_saved):
 
@@ -50,6 +51,8 @@ class Automata:
         row_q0 = dat_q0.split(',')
         row_F = dat_F.split(',')
         row_D = dat_D.split(',')
+        
+        # row_D2 = [row_D[i:i + 3] for i in range(0, len(row_D), 3)]
 
         print("Q: ", row_Q)
         print("S: ", row_S)
@@ -57,7 +60,24 @@ class Automata:
         print("F: ", row_F)
         print("D: ", row_D)
 
-       
+        self.windows.destroy()
+        # self.main_Interface(row_Q, row_S, row_q0, row_F, row_D2)
+
+    def main_Interface(self, Q, S, q_0, F, D):
+        main_windows = Tk()
+        main_windows.geometry("300x200")
+        main_windows.title("AFN/AFD/")
+        main_windows.resizable(0,0)
+
+        ttk.Label(main_windows, text="A U T O M A T A ~ F I N I T O").place(relx=0.25,rely=0.10)
+        ttk.Label(main_windows,text="Cadena: ").place(relx=0.15,rely=0.35)
+        add_String = ttk.Entry(main_windows)
+        add_String.place(relx=0.35,rely=0.35)
+        Btn_Review = ttk.Button(main_windows, text="Evaluar Cadena",command=lambda:"#")
+        Btn_Review.place(relx=0.35, rely=0.55)
+        main_windows.mainloop()
+    
+    
 
 
 app = Automata()

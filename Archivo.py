@@ -16,12 +16,11 @@ def add_File():
             lines_read = lines_read.replace("}","")
             lines_read = lines_read.replace("=","")
             lines_read = lines_read.replace(" ","")
-            lines_read = lines_read.replace(")","")
-            lines_read = lines_read.replace("(","")
+
             data_Saved.append(lines_read)
 
     return data_Saved
 
-def compare_Automaton():
+def compare_Automaton(list_transition):
     pass
 
