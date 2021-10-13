@@ -20,8 +20,9 @@ def add_File():
                     if read_Lines[0] == 'S':
                         read_Lines = read_Lines.replace("S=", '').replace("\n",'')
                         add_Alphabet(read_Lines)
-                    if read_Lines[0] == 'q':
+                    if read_Lines[0] == "q":
                         read_Lines = read_Lines.replace("q0=", '').replace("\n",'')
+                        print("q0:",read_Lines)
                         add_InitialState(read_Lines)
                     if read_Lines[0] == 'F':
                         read_Lines = read_Lines.replace("F=", '').replace("\n",'')
@@ -66,7 +67,26 @@ def add_FinalState(lines):
             new_Final.add(final)
 
 def add_Transitions(lines):
-    pass
+    try:
+        for datas in range(0,len(lines),1):
+            if lines[(datas-1)] == ")" and lines[(datas+1)] == "(":
+                lines = lines[:(datas)] + "." + lines[(datas+1):]
+    except:
+        pass
+    lines = lines.replace("(",'').replace(")",'')
+    transitions = lines.split(".")
+
+    for transition in transitions:
+        new_Data = transition.split(",")
+        new_Key = new_Data[0] + "," + new_Data[1]  #Concatena el estado con la transcion
+        add_Transitions2(new_Key,new_Data[2])
+       
+def add_Transitions2(Keys,Datas):
+    places = set([Datas])
+    if Keys in new_Transitions:
+        new_Transitions.get(Keys).add(Datas)
+    else:
+        new_Transitions.setdefault(Keys, places)
 
 #-------- Obtener y enviar datos ---
 def send_States():
