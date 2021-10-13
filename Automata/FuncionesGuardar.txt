@@ -1,0 +1,44 @@
+# Hace una busqueda de cada caracter
+        dat_Q = [s for s in data_Saved if "Q" in s]
+        dat_S = [s for s in data_Saved if "S" in s]
+        dat_q0 = [s for s in data_Saved if "q0" in s]
+        dat_F = [s for s in data_Saved if "F" in s]
+        dat_D = [s for s in data_Saved if "D" in s]
+
+        # convertir a cadenas
+        Str_Q = "".join(dat_Q)
+        Str_S = "".join(dat_S)
+        Str_q0 = "".join(dat_q0)
+        Str_F = "".join(dat_F)
+        Str_D = "".join(dat_D)
+
+        # Eliminar letras
+        dat_Q = Str_Q.replace("Q", "")
+        dat_S = Str_S.replace("S", "")
+        dat_q0 = Str_q0.replace("q_0", "")
+        dat_F = Str_F.replace("F", "")
+        dat_D = Str_D.replace("D", "")
+
+        #Convertir de nuevo a lista
+        row_Q = dat_Q.split(',')
+        row_S = dat_S.split(',')
+        row_q0 = dat_q0.split(',')
+        row_F = dat_F.split(',')
+        row_D = dat_D.split(',')
+
+        print("Q: ", row_Q)
+        print("S: ", row_S)
+        print("q0:",row_q0)
+        print("F: ", row_F)
+        print("D: ", row_D)
+
+
+        data_Saved = []
+        for lines_read in lines_saved:
+            lines_read = lines_read.replace("\n","")
+            lines_read = lines_read.replace("\t","")
+            lines_read = lines_read.replace("=","")
+            lines_read = lines_read.replace("{","")
+            lines_read = lines_read.replace("}","")
+
+            data_Saved.append(lines_read)
